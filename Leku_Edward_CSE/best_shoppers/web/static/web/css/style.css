@@ -1,0 +1,350 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* =====================
+   LANDING PAGE
+   ===================== */
+
+.landing-body {
+    background-color: #E07320;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.landing-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 80px;
+}
+
+.logo-circle {
+    width: 230px;
+    height: 230px;
+    border-radius: 50%;
+    background-color: #E07320;
+    border: 14px solid white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+}
+
+.logo-best {
+    color: white;
+    font-size: 46px;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight: bold;
+    letter-spacing: 3px;
+}
+
+.logo-shoppers {
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.logo-market {
+    color: white;
+    font-size: 24px;
+    font-family: 'Dancing Script', Georgia, cursive;
+    font-style: italic;
+    margin-top: 2px;
+}
+
+.join-btn {
+    display: block;
+    background-color: white;
+    color: #E07320;
+    padding: 22px 90px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+    letter-spacing: 1px;
+    transition: opacity 0.2s;
+}
+
+.join-btn:hover {
+    opacity: 0.9;
+}
+
+/* =====================
+   DASHBOARD
+   ===================== */
+
+.dashboard-body {
+    background-color: #f0f0f0;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.dashboard-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.main-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    align-items: start;
+}
+
+/* ---- Left Column ---- */
+
+.left-col {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.stats-big-card {
+    background: white;
+    border-radius: 8px;
+    padding: 30px 20px;
+    display: flex;
+    align-items: center;
+}
+
+.stat-item {
+    flex: 1;
+    padding: 10px 20px;
+}
+
+.stat-item h2 {
+    font-size: 22px;
+    font-weight: bold;
+    color: #222;
+    margin-bottom: 6px;
+}
+
+.stat-item p {
+    color: #aaa;
+    font-size: 14px;
+}
+
+.stat-divider {
+    width: 1px;
+    height: 55px;
+    background-color: #e0e0e0;
+    flex-shrink: 0;
+}
+
+.stats-small-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.stat-small-card {
+    background: white;
+    border-radius: 8px;
+    padding: 24px 20px;
+}
+
+.stat-small-card h2 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 6px;
+}
+
+.stat-small-card p {
+    color: #aaa;
+    font-size: 14px;
+}
+
+.green-text { color: #27ae60; }
+.red-text   { color: #e74c3c; }
+
+/* ---- Right Column: Form ---- */
+
+.form-card {
+    background: white;
+    border-radius: 8px;
+    padding: 24px;
+}
+
+.form-title {
+    font-size: 18px;
+    font-weight: normal;
+    color: #333;
+    margin-bottom: 18px;
+}
+
+.success-banner {
+    background-color: #27ae60;
+    color: white;
+    padding: 12px 16px;
+    border-radius: 4px;
+    margin-bottom: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+}
+
+.close-x {
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 1;
+    padding: 0 4px;
+}
+
+/* ---- Form Inputs ---- */
+
+.input-group {
+    margin-bottom: 12px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-input {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #333;
+    outline: none;
+    background: white;
+    transition: border-color 0.2s;
+}
+
+.form-input:focus {
+    border-color: #27ae60;
+}
+
+.form-input::placeholder {
+    color: #bbb;
+}
+
+/* Green border when field has a value */
+.input-group.has-value .form-input {
+    border-color: #27ae60;
+}
+
+/* Red border when field has an error */
+.input-group.has-error .form-input {
+    border-color: #e74c3c;
+}
+
+.error-msg {
+    color: #e74c3c;
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+.input-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 0;
+}
+
+.input-row .input-group {
+    margin-bottom: 12px;
+}
+
+.file-input {
+    padding: 9px 14px;
+    font-size: 13px;
+    color: #555;
+    cursor: pointer;
+}
+
+.form-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 6px;
+}
+
+.btn-save {
+    background-color: #E07320;
+    color: white;
+    border: none;
+    padding: 14px;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.btn-save:hover {
+    opacity: 0.9;
+}
+
+.btn-clear {
+    background-color: #b0b0b0;
+    color: white;
+    border: none;
+    padding: 14px;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.btn-clear:hover {
+    opacity: 0.9;
+}
+
+/* ---- Product Table ---- */
+
+.table-section {
+    background: white;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.product-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.product-table thead tr {
+    background-color: #111;
+    color: white;
+}
+
+.product-table th {
+    padding: 14px 20px;
+    text-align: center;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+.product-table td {
+    padding: 14px 20px;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+    color: #333;
+}
+
+.product-table tbody tr:hover {
+    background-color: #fafafa;
+}
+
+.product-table tbody tr:last-child td {
+    border-bottom: none;
+}

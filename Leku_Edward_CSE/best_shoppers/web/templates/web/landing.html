@@ -1,0 +1,21 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Best Shoppers Market</title>
+    <link rel="stylesheet" href="{% static 'web/css/style.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+</head>
+<body class="landing-body">
+    <div class="landing-container">
+        <div class="logo-circle">
+            <h1 class="logo-best">BEST</h1>
+            <h2 class="logo-shoppers">SHOPPERS</h2>
+            <p class="logo-market">Market</p>
+        </div>
+        <a href="{% url 'dashboard' %}" class="join-btn">JOIN NOW</a>
+    </div>
+</body>
+</html>

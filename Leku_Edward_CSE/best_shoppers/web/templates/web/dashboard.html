@@ -1,0 +1,167 @@
+{% load static %}
+{% load humanize %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Best Shoppers Market</title>
+    <link rel="stylesheet" href="{% static 'web/css/style.css' %}">
+</head>
+<body class="dashboard-body">
+    <div class="dashboard-wrapper">
+
+        <div class="main-grid">
+
+            <!-- LEFT: Stats -->
+            <div class="left-col">
+                <div class="stats-big-card">
+                    <div class="stat-item">
+                        <h2>UGX {{ total_sales|floatformat:0|intcomma }}</h2>
+                        <p>Sales</p>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item">
+                        <h2>UGX {{ total_orders|floatformat:0|intcomma }}</h2>
+                        <p>Orders</p>
+                    </div>
+                </div>
+
+                <div class="stats-small-row">
+                    <div class="stat-small-card">
+                        <h2 class="green-text">UGX {{ in_stock_value|floatformat:0|intcomma }}</h2>
+                        <p>In stock</p>
+                    </div>
+                    <div class="stat-small-card">
+                        <h2 class="red-text">{{ out_of_stock_count }}</h2>
+                        <p>Out of stock</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT: Add Product Form -->
+            <div class="right-col">
+                <div class="form-card">
+                    <h3 class="form-title">Add Product</h3>
+
+                    {% if success %}
+                    <div class="success-banner" id="successBanner">
+                        <span>Product has been added successfully!</span>
+                        <span class="close-x" onclick="document.getElementById('successBanner').style.display='none'">x</span>
+                    </div>
+                    {% endif %}
+
+                    <form method="POST" enctype="multipart/form-data" id="productForm" novalidate>
+                        {% csrf_token %}
+
+                        <div class="input-group {% if form.name.errors %}has-error{% endif %}">
+                            {{ form.name }}
+                            {% if form.name.errors %}
+                                <span class="error-msg">Invalid field</span>
+                            {% endif %}
+                        </div>
+
+                        <div class="input-group {% if form.category.errors %}has-error{% endif %}">
+                            {{ form.category }}
+                            {% if form.category.errors %}
+                                <span class="error-msg">Invalid field</span>
+                            {% endif %}
+                        </div>
+
+                        <div class="input-group {% if form.price.errors %}has-error{% endif %}">
+                            {{ form.price }}
+                            {% if form.price.errors %}
+                                <span class="error-msg">Invalid field</span>
+                            {% endif %}
+                        </div>
+
+                        <div class="input-group {% if form.quantity.errors %}has-error{% endif %}">
+                            {{ form.quantity }}
+                            {% if form.quantity.errors %}
+                                <span class="error-msg">Invalid field</span>
+                            {% endif %}
+                        </div>
+
+                        <div class="input-row">
+                            <div class="input-group {% if form.color.errors %}has-error{% endif %}">
+                                {{ form.color }}
+                                {% if form.color.errors %}
+                                    <span class="error-msg">Invalid field</span>
+                                {% endif %}
+                            </div>
+                            <div class="input-group {% if form.image.errors %}has-error{% endif %}">
+                                {{ form.image }}
+                                {% if form.image.errors %}
+                                    <span class="error-msg">Invalid field</span>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <div class="form-buttons">
+                            <button type="submit" class="btn-save">SAVE</button>
+                            <button type="button" class="btn-clear" onclick="clearForm()">CLEAR</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product Table -->
+        <div class="table-section">
+            <table class="product-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>NAME</th>
+                        <th>CATEGORY</th>
+                        <th>PRICE (UGX)</th>
+                        <th>QUANTITY</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for product in products %}
+                    <tr>
+                        <td>#{{ product.product_id }}</td>
+                        <td>{{ product.name }}</td>
+                        <td>{{ product.category }}</td>
+                        <td>{{ product.price|floatformat:0|intcomma }}</td>
+                        <td>{{ product.quantity }}</td>
+                    </tr>
+                    {% endfor %}
+                    {% if not products %}
+                    <tr>
+                        <td colspan="5" style="text-align:center; color:#aaa; padding:30px;">No products yet. Add one above.</td>
+                    </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <script>
+        function clearForm() {
+            document.getElementById('productForm').reset();
+            document.querySelectorAll('.input-group').forEach(function(g) {
+                g.classList.remove('has-error', 'has-value');
+            });
+        }
+
+        document.querySelectorAll('.form-input').forEach(function(input) {
+            input.addEventListener('input', function() {
+                var group = this.closest('.input-group');
+                if (this.value.trim() !== '') {
+                    group.classList.add('has-value');
+                    group.classList.remove('has-error');
+                } else {
+                    group.classList.remove('has-value');
+                }
+            });
+
+            if (input.value && input.value.trim() !== '') {
+                input.closest('.input-group').classList.add('has-value');
+            }
+        });
+    </script>
+</body>
+</html>
